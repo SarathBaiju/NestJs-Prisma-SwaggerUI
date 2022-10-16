@@ -22,8 +22,12 @@ export class UsersService {
     return await this.prismaService.user.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.prismaService.user.findFirst({
+      where:{
+        id: id
+      }
+    });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
